@@ -26,6 +26,107 @@ connectToDb((err) => {
 
 
 //routes and route handlers 
+
+
+//fetch requests 
+app.get('/books/get', (request, response) => {
+    console.log('currently in fetch \'/books/fetching\'')
+    //https://www.youtube.com/watch?v=cuEtnrL9-H0
+
+    console.log('before fetch')
+    let uri = 'http:localhost:3000/books'
+    fetch(uri, {
+        method: 'GET',
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // },
+        // body: JSON.stringify({
+        //     '_id':'63c0f92549d61143c7d2090f'
+        // })
+    
+    })
+      .then(res => {
+        if(res.ok){
+            console.log('successful response')
+        }
+        else{
+            console.log('response was unsuccessful')
+        }
+        return res.json()
+    })
+      .then(data => 
+        {
+            console.log(data)
+            response.status(200).json(data)
+        })
+      .catch(err => console.log(`ERROR ${err}`))
+
+
+})
+
+app.get('/books/post', (request, response) => {
+    console.log('currently in fetch \'books/post\'')
+
+    let uri = 'http://localhost:3000/books'
+    fetch(uri, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+                'title': 'Harry Potter: and the Sorcerer\'s Stone',
+                'author': 'J. K. Rowling',
+                'pages': 223,
+                'genres': ['Novel', 'Children\'s literature', 'Fantasy Fiction', 'High fantasy', 'Adventure fiction', 'Contemporary fantasy']
+            })
+    })
+      .then(res => {
+        if(res.ok){
+            console.log('successful response to fetch')
+        }
+        else{
+            console.log('unsuccessful fetch')
+        }
+        return res.json()
+      })
+      .then(data => {
+        console.log(data)
+        response.status(200).json(data)
+      })
+      .catch(err => console.log(`ERROR ${err}`))
+})
+
+app.get('books/delete', (request, response) => {
+    console.log('currently in fetch books/delete')
+
+    let id = '63ddfa56652a14160a5a4d5e'
+    let uri = 'http://localhost:3000/books/63ddfa56652a14160a5a4d5e'
+
+    fetch (uri, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+      .then(res => {
+        if(res.ok){
+            console.log(`successful fetch deleting book ${id}`)
+        }
+        else{
+            console.log('unsuccesful fetch for book '.concat(id))
+        }
+        return res.json()
+      })
+      .then(data => {
+        console.log(data)
+        response.status(200).json(data)
+      })
+      .catch(err => console.log(`ERROR for book id: ${id} \n with error ${err}`))
+})
+
+
+
+// api requests 
 app.get('/books', (request, response) => {
     //console.log('5aoeu')
     console.log('getting request to see all books')
@@ -47,11 +148,6 @@ app.get('/books', (request, response) => {
 
 
     // response.json({msg: "welcome to the api"});
-});
-
-app.get('/books/fetching', (request, response) => {
-    console.log('currently in app.get(\'/books/fetching\')')
-    send.request
 })
 
 app.get('/books/:id', (request, response) => {
@@ -76,7 +172,7 @@ app.get('/books/:id', (request, response) => {
 })
 
 
-app.post('/books/:id', (request, response) => {
+app.post('/books', (request, response) => {
     const book = request.body
 
     db.collection('books')
