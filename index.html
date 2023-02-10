@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <style>
+        .text-boxes {
+          margin: 20px;
+        }
+  
+        label {
+          font-size: 18px;
+          display: block;
+          margin-bottom: 10px;
+        }
+  
+        input[type="text"] {
+          padding: 10px;
+          font-size: 18px;
+          width: 300px;
+          border: 1px solid gray;
+          border-radius: 5px;
+        }
+  
+        input[type="submit"] {
+          padding: 10px 20px;
+          font-size: 18px;
+          background-color: green;
+          color: white;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+        }
+        .center {
+        text-align: center;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <button id="homeBtn">Home</button>
+        <button id="getBtn">Get</button>
+        <button id="postBtn">Post</button>
+        <button id="patchBtn">Patch</button>
+        <button id="deleteBtn">Delete</button>
+      </div>
+    </div>
+    <div class="red-strip"></div>
+
+    <div id="homePage" class="page">
+        <div class="center">
+      <h1>BootlegPostman</h1>
+      <p>A website where you can store and retrieve data</p>
+    </div>
+     </div>
+
+    <div id="getPage" class="page" style="display: none;">
+        <div class="center">
+      <h1>Get Information</h1>
+      <p>Here you can input the information that you would like to store</p>
+    </div>
+      <div class="text-boxes">
+        <label for="text-box-1">ID:</label>
+        <input type="text" id="text-box-1">
+        <br><br>
+        <label for="text-box-2">Output:</label>
+        <input type="text" id="text-box-2">
+        <br><br>
+        <input type="submit" value="Submit">
+      </div>
+    </div>
+
+    <div id="postPage" class="page" style="display: none;">
+        <div class="center">
+      <h1>Post Page</h1>
+      <p>Welcome to the post page.</p>
+    </div>
+    </div>
+
+    <div id="patchPage" class="page" style="display: none;">
+        <div class="center">
+      <h1>Patch Page</h1>
+      <p>Welcome to the patch page.</p>
+    </div>
+    </div>
+
+    <div id="deletePage" class="page" style="display: none;">
+        <div class="center">
+      <h1>Delete Page</h1>
+      <p>Welcome to the delete page.</p>
+    </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+          document.getElementById("getBtn").addEventListener("click", function() {
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("getPage").style.display = "block";
+            document.getElementById("postPage").style.display = "none";
+            document.getElementById("patchPage").style.display = "none";
+            document.getElementById("deletePage").style.display = "none";
+          });
+  
+          document.getElementById("postBtn").addEventListener("click", function() {
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("getPage").style.display = "none";
+            document.getElementById("postPage").style.display = "block";
+            document.getElementById("patchPage").style.display = "none";
+            document.getElementById("deletePage").style.display = "none";
+          });
+  
+          document.getElementById("patchBtn").addEventListener("click", function() {
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("getPage").style.display = "none";
+            document.getElementById("postPage").style.display = "none";
+            document.getElementById("patchPage").style.display = "block";
+            document.getElementById("deletePage").style.display = "none";
+          });
+  
+          document.getElementById("deleteBtn").addEventListener("click", function() {
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("getPage").style.display = "none";
+            document.getElementById("postPage").style.display = "none";
+            document.getElementById("patchPage").style.display = "none";
+            document.getElementById("deletePage").style.display = "block";
+          });
+  
+          document.getElementById("homeBtn").addEventListener("click", function() {
+            document.getElementById("homePage").style.display = "block";
+            document.getElementById("getPage").style.display = "none";
+            document.getElementById("postPage").style.display = "none";
+            document.getElementById("patchPage").style.display = "none";
+            document.getElementById("deletePage").style.display = "none";
+          });
+        };
+      </script>
+    </body>
+  </html>
+  
