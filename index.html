@@ -35,7 +35,7 @@
       }
       </style>
   </head>
-  <body>
+  <body >
     <div class="navbar">
       <div class="navbar-inner">
         <button id="homeBtn">Home</button>
@@ -60,13 +60,31 @@
       <p>Here you can input the information that you would like to store</p>
     </div>
       <div class="text-boxes">
-        <label for="text-box-1">ID:</label>
+
+        <section>
+            <h2>Get Books</h2>
+            <form method = "GET" action = 'test.html' target="iframeoutput"> 
+                <fieldset>
+                <legend> Data input: </legend>
+                    <label for="id">ID: <input type = "text" id="id" name="id" autofocus> </label>
+                    <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
+
+                    <input type="submit"  value="fetchGet">
+
+                    <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
+                    </iframe>                    
+
+                </fieldset>
+            </form>
+            
+        </section>
+        <!-- <label for="text-box-1">ID:</label>
         <input type="text" id="text-box-1">
         <br><br>
         <label for="text-box-2">Output:</label>
         <input type="text" id="text-box-2">
         <br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit"> -->
       </div>
     </div>
 
@@ -74,7 +92,26 @@
         <div class="center">
       <h1>Post Page</h1>
       <p>Welcome to the post page.</p>
-    </div>
+      </div>
+        <section>
+            <h2>Post Books</h2>
+            <form method = "post" action="#"    target="_self"> 
+                <fieldset>
+                <legend> Data input: </legend>
+                    <label for="title">Title: <input type = "text" id="title" autofocus> </label>
+                    <label for="author">Author: <input type = "text" id="author"> </label>
+
+                    <input type = "submit"  value = "fetch">
+
+                </fieldset>
+            </form>
+            
+            <iframe src="." height="500" width="1400" title="Iframe Example"> 
+              <script>
+                alert('hello world')
+              </script>
+            </iframe>
+        </section>
     </div>
 
     <div id="patchPage" class="page" style="display: none;">
@@ -82,6 +119,21 @@
       <h1>Patch Page</h1>
       <p>Welcome to the patch page.</p>
     </div>
+        <section>
+            <h2>Patch Books</h2>
+            <form method = "patch"   target="_self"> 
+                <fieldset>
+                <legend> Data input: </legend>
+                    <label for="title">Title: <input type = "text" id="title" autofocus> </label>
+                    <label for="author">Author: <input type = "text" id="author"> </label>
+
+                    <input type = "submit"  value = "fetch">
+
+                </fieldset>
+            </form>
+            
+            <iframe  height="500" width="1400" title="Iframe Example"> </iframe>
+        </section>
     </div>
 
     <div id="deletePage" class="page" style="display: none;">
@@ -89,6 +141,21 @@
       <h1>Delete Page</h1>
       <p>Welcome to the delete page.</p>
     </div>
+        <section>
+            <h2>Get Books</h2>
+            <form method = "delete"     target="_self"> 
+                <fieldset>
+                <legend> Data input: </legend>
+                    <label for="title">Title: <input type = "text" id="title" autofocus> </label>
+                    <label for="author">Author: <input type = "text" id="author"> </label>
+
+                    <input type = "submit"  value = "fetch">
+
+                </fieldset>
+            </form>
+            
+            <iframe  height="500" width="1400" title="Iframe Example"> </iframe>
+        </section>
     </div>
 
     <script>
@@ -133,6 +200,8 @@
             document.getElementById("deletePage").style.display = "none";
           });
         };
+
+        function fetchGet(){}
       </script>
     </body>
   </html>
