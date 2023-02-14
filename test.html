@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Results</title>
+    </head>
+    <body src="app.js">
+        <div id="results">
+            <!-- <ul class="nav-items">
+                <li class="nav-link">
+                    <a href="Index.html">Index.html</a>
+                </li>
+            </ul> -->
+
+            <script >
+                //const fetchGet = require('app.js')
+
+                let id = []
+                let i = 0;
+                const resultList = document.getElementById('results')
+                new URLSearchParams(window.location.search).forEach((value, name) => {
+                    resultList.append(`${name}: ${value}`)
+                    resultList.append(document.createElement('br'))
+                    i++;
+                    id[i] = value
+                    //resultList.append('helloworld')
+                    //alert(title + ' ' + author)
+                    // if(id.length > 0){
+                    //     fetchGet(id[0]) 
+                    // }
+                    console.log(id)
+                })
+            </script>
+        </div>
+    </body>
+</html>
