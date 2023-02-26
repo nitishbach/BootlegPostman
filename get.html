@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Results</title>
+    </head>
+    <body src="app.js">
+        <div id="results">
+            <!-- <ul class="nav-items">
+                <li class="nav-link">
+                    <a href="Index.html">Index.html</a>
+                </li>
+            </ul> -->
+
+            <script >
+                //const fetchGet = require('app.js')
+                //let id = []
+                let i = 0;
+                let totalParams = 2;
+                let searchParameters = {};
+                searchParameters.length = 0;
+                // let search = {};
+                const resultList = document.getElementById('results')
+                new URLSearchParams(window.location.search).forEach((value, name) => {
+                    resultList.append(`${name}: ${value}`)
+                    resultList.append(document.createElement('br'))
+                    i++;
+                    
+                    if(value != ""){
+                        console.log(value + "value is not NULL");
+                        searchParameters[name] = value;
+                        searchParameters.length++;
+                        console.log("BUTCH going crazy");
+                        //console.log(searchParameters.length);
+                    }
+                    //resultList.append('helloworld')
+                    //alert(title + ' ' + author)
+                    // if(id.length > 0){
+                    //     fetchGet(id[0]) 
+                    // }
+                    
+                
+                    if(i == totalParams - 1){
+                        console.log("Search parameters: " + searchParameters + searchParameters.length);
+
+                        if(searchParameters.length == 0){
+                            console.log("search is set to null");
+                            searchParameters = null
+                        }
+                        fetchGet(resultList, searchParameters)
+                    }
+                })
+
+                
+                function fetchGet(resultList, search){
+                    // fetch("http://localhost:3000/books").then(data => data.json()).then(data => console.log("HELLO", data))
+                    //https://www.youtube.com/watch?v=cuEtnrL9-H0
+
+                        console.log('Currently in fetchGet')
+                        let uri = 'http:localhost:3000/books'
+                        fetch(uri, {
+                            method: 'GET',
+                            // headers: {
+                            //     'Content-Type': 'application/json'
+                            // },
+                            // body: JSON.stringify({
+                            //     '_id':'63c0f92549d61143c7d2090f'
+                            // })
+                        
+                        })
+                        .then(res => {
+                            if(res.ok){
+                                console.log('successful response')
+                            }
+                            else{
+                                console.log('response was unsuccessful')
+                            }
+                            return res.json()
+                        })
+                        .then(data => 
+                            {
+                                console.log(data)
+                                let parsedData
+                                if(search != null){
+                                    console.log('search is NOT null');
+                                    parsedData = findData(data, search)
+                                    
+                                    console.log("parsed data" + parsedData);
+                                    if(parsedData == null){
+                                        resultList.append("No datapoints with: ")
+                                        resultList.append(document.createElement('br'))
+
+                                        for(let searchCategories in search){
+                                            resultList.append(search[searchCategories])
+                                            resultList.append(document.createElement('br'))
+
+                                        }
+                                    }  
+                                    //resultList.append(JSON.stringify(parsedData))
+                                    printInIframe(parsedData, resultList, search)
+                                    
+                                }
+                                else{
+                                    console.log("SEARCh IS NULL");
+                                    parsedData = data
+                                    printInIframe(parsedData, resultList, null)
+                                }
+
+                                
+
+                               
+                                
+                            })
+                        .catch(err => console.log(`ERROR ${err}`))       
+            
+                }
+
+                function findData(data, search){
+                    let outData
+                    for(let dataPoint in data){
+                        for(let searchCategories in search ){
+                            if(data[dataPoint][searchCategories] == search[searchCategories]){
+                                resultList.append(data[dataPoint][searchCategories] == search[searchCategories])
+                                resultList.append(document.createElement('br'))
+                                // resultList.append(document.createElement('br'))
+                                // resultList.append(data)
+                                outData = data[dataPoint]
+                            }
+
+                        }
+                    }
+                    // resultList.append(JSON.stringify(outData))
+
+                    return outData;
+                }
+                
+
+                function printInIframe(data, resultList, search){
+                    //resultList.append('hello world up in this bitch fr.')
+                    resultList.append(document.createElement('br'))
+                    //response.status(200).json(data)
+                    // data = JSON.stringify(data, null, 3)
+
+                    for(let dataPoint in data){
+                        // resultList.append('{')
+                        // resultList.append(document.createElement('br'))
+                        // for(let dataCategory in dataPoint){
+                        //     resultList.append(JSON.stringify(dataCategory))
+                        //     resultList.append(document.createElement('br'))
+
+                        // }
+                        resultList.append(JSON.stringify(dataPoint) + ": ")
+                        resultList.append(JSON.stringify(data[dataPoint]))
+                        resultList.append(document.createElement('br'))
+                        resultList.append(document.createElement('br'))
+
+                    }
+
+                    // resultList.append(data)
+                }
+            </script>
+        </div>
+    </body>
+</html>
