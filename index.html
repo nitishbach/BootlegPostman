@@ -52,7 +52,7 @@
       <h1>BootlegPostman</h1>
       <p>A website where you can store and retrieve data</p>
     </div>
-     </div>
+     </div> 
 
     <div id="getPage" class="page" style="display: none;">
         <div class="center">
@@ -63,13 +63,19 @@
 
         <section>
             <h2>Get Books</h2>
-            <form method = "GET" action = 'test.html' target="iframeoutput"> 
+            <!-- <form method = "GET" action = 'test.html' target="iframeoutput">  -->
+            <form method = "GET" action='test.html' target="iframeoutput" > 
                 <fieldset>
                 <legend> Data input: </legend>
-                    <label for="id">ID: <input type = "text" id="id" name="id" autofocus> </label>
+                    <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
+                    <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
                     <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
+                    <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
+                    <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
+                    <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
+                    
 
-                    <input type="submit"  value="fetchGet">
+                    <input  type="submit"  value="fetchGet">
 
                     <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
                     </iframe>                    
@@ -78,13 +84,6 @@
             </form>
             
         </section>
-        <!-- <label for="text-box-1">ID:</label>
-        <input type="text" id="text-box-1">
-        <br><br>
-        <label for="text-box-2">Output:</label>
-        <input type="text" id="text-box-2">
-        <br><br>
-        <input type="submit" value="Submit"> -->
       </div>
     </div>
 
@@ -95,22 +94,24 @@
       </div>
         <section>
             <h2>Post Books</h2>
-            <form method = "post" action="#"    target="_self"> 
-                <fieldset>
-                <legend> Data input: </legend>
-                    <label for="title">Title: <input type = "text" id="title" autofocus> </label>
-                    <label for="author">Author: <input type = "text" id="author"> </label>
+            <form method = "POST" action='test.html' target="iframeoutput" > 
+              <fieldset>
+              <legend> Data input: </legend>
+                  <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
+                  <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
+                  <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
+                  <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
+                  <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
+                  <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
+                  
 
-                    <input type = "submit"  value = "fetch">
+                  <input  type="submit"  value="fetchGet">
 
-                </fieldset>
-            </form>
-            
-            <iframe src="." height="500" width="1400" title="Iframe Example"> 
-              <script>
-                alert('hello world')
-              </script>
-            </iframe>
+                  <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
+                  </iframe>                    
+
+              </fieldset>
+          </form>
         </section>
     </div>
 
@@ -121,18 +122,24 @@
     </div>
         <section>
             <h2>Patch Books</h2>
-            <form method = "patch"   target="_self"> 
-                <fieldset>
-                <legend> Data input: </legend>
-                    <label for="title">Title: <input type = "text" id="title" autofocus> </label>
-                    <label for="author">Author: <input type = "text" id="author"> </label>
+            <form method = "PATCH" action='test.html' target="iframeoutput" > 
+              <fieldset>
+              <legend> Data input: </legend>
+                  <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
+                  <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
+                  <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
+                  <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
+                  <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
+                  <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
+                  
 
-                    <input type = "submit"  value = "fetch">
+                  <input  type="submit"  value="fetchGet">
 
-                </fieldset>
+                  <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
+                  </iframe>                    
+
+              </fieldset>
             </form>
-            
-            <iframe  height="500" width="1400" title="Iframe Example"> </iframe>
         </section>
     </div>
 
@@ -143,18 +150,24 @@
     </div>
         <section>
             <h2>Get Books</h2>
-            <form method = "delete"     target="_self"> 
-                <fieldset>
-                <legend> Data input: </legend>
-                    <label for="title">Title: <input type = "text" id="title" autofocus> </label>
-                    <label for="author">Author: <input type = "text" id="author"> </label>
+            <form method = "DELETE" action='test.html' target="iframeoutput" > 
+              <fieldset>
+              <legend> Data input: </legend>
+                  <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
+                  <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
+                  <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
+                  <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
+                  <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
+                  <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
+                  
 
-                    <input type = "submit"  value = "fetch">
+                  <input  type="submit"  value="fetchGet">
 
-                </fieldset>
-            </form>
-            
-            <iframe  height="500" width="1400" title="Iframe Example"> </iframe>
+                  <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
+                  </iframe>                    
+
+              </fieldset>
+          </form>
         </section>
     </div>
 
@@ -201,7 +214,7 @@
           });
         };
 
-        function fetchGet(){}
+        
       </script>
     </body>
   </html>
