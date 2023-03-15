@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Results</title>
+    </head>
+    <body src="app.js">
+        <h3> delete loaded </h3>
+        <div id="results">
+            <!-- <ul class="nav-items">
+                <li class="nav-link">
+                    <a href="Index.html">Index.html</a>
+                </li>
+            </ul> -->
+
+            <script >
+                //const fetchGet = require('app.js')
+                //let id = []
+                // let search = {};
+                const resultList = document.getElementById('results')
+                new URLSearchParams(window.location.search).forEach((value, name) => {
+                    resultList.append(`${name}: ${value}`)
+                    resultList.append(document.createElement('br'))
+
+                    // console.log(value)
+                    // console.log(fetchGetData(value))
+                    // printInIframe(fetchGetData(value), resultList) 
+                    fetchDelete(resultList, value, null)
+                })
+
+                
+
+                function fetchGetData(id){
+                    console.log('currently in fetchGetDelete')
+                    let uri = `http:localhost:3000/books/${id}`
+                    fetch(uri, {
+                        method: 'GET'
+                    })
+                    .then(res => {
+                        if(res.ok){
+                            console.log('succesful response')
+                        }
+                        else{
+                            console.log('response was unseccesful');
+                        }
+                        return res.json()
+                    })
+                    .then(data => {
+                        return JSON.stringify(data);
+                    })
+                    .catch(err => console.log(`ERROR ${err}`))
+                }
+                
+
+                function fetchDelete(resultList, id, uri){
+                    // fetch("http://localhost:3000/books").then(data => data.json()).then(data => console.log("HELLO", data))
+                    //https://www.youtube.com/watch?v=cuEtnrL9-H0
+
+                        console.log('Currently in fetchDelete')
+                        if(uri == null){
+                            let uri = `http:localhost:3000/books/${id}`
+                        }
+                        fetch(uri, {
+                            method: 'DELETE',
+                            // headers: {
+                            //     'Content-Type': 'application/json'
+                            // },
+                            // body:q JSON.stringify({
+                            //     '_id':'63c0f92549d61143c7d2090f'
+                            // })
+                        
+                        })
+                        .then(res => {
+                            if(res.ok){
+                                console.log('successful response')
+                            }
+                            else{
+                                console.log('response was unsuccessful')
+                            }
+                            return res.json()
+                        })
+                        .then(data => 
+                            {
+                                if(data["deletedCount"] == 0){
+                                    fetchDelete(resultList, id, `http:localhost:3000/books/1/${id}`)
+                                }
+                                else{
+                                    printInIframe(data,resultList)
+                                }
+                            })
+                        .catch(err => console.log(`ERROR ${err}`))       
+            
+                }
+
+                
+
+                function printInIframe(data, resultList){
+                    //resultList.append('hello world up in this bitch fr.')
+                    resultList.append(document.createElement('br'))
+                    //response.status(200).json(data)
+                    // data = JSON.stringify(data, null, 3)
+
+                    for(let dataPoint in data){
+                        // resultList.append('{')
+                        // resultList.append(document.createElement('br'))
+                        // for(let dataCategory in dataPoint){
+                        //     resultList.append(JSON.stringify(dataCategory))
+                        //     resultList.append(document.createElement('br'))
+
+                        // }
+                        resultList.append(JSON.stringify(dataPoint) + ": ")
+                        resultList.append(JSON.stringify(data[dataPoint]))
+                        resultList.append(document.createElement('br'))
+                        resultList.append(document.createElement('br'))
+
+                    }
+
+                    // resultList.append(data)
+                }
+            </script>
+        </div>
+    </body>
+</html>
