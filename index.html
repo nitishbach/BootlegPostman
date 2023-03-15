@@ -51,20 +51,21 @@
         <div class="center">
       <h1>BootlegPostman</h1>
       <p>A website where you can store and retrieve data</p>
+      <img src="bookshelf.png" > 
     </div>
      </div> 
 
     <div id="getPage" class="page" style="display: none;">
         <div class="center">
       <h1>Get Information</h1>
-      <p>Here you can input the information that you would like to store</p>
+      <p>Find books here </p>
     </div>
       <div class="text-boxes">
 
         <section>
             <h2>Get Books</h2>
             <!-- <form method = "GET" action = 'test.html' target="iframeoutput">  -->
-            <form method = "GET" action='test.html' target="iframeoutput" > 
+            <form method = "GET" action="get.html" target="iframeoutputGet" > 
                 <fieldset>
                 <legend> Data input: </legend>
                     <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
@@ -73,11 +74,12 @@
                     <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
                     <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
                     <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
+                    <label for="cleraButton"> <input value ="clearConsole()" type="button"  onclick="console.clear()" id="cleraButton"> </label>
                     
 
                     <input  type="submit"  value="fetchGet">
 
-                    <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
+                    <iframe src="get.html" height="500" width="1400" name="iframeoutputGet"> 
                     </iframe>                    
 
                 </fieldset>
@@ -90,11 +92,11 @@
     <div id="postPage" class="page" style="display: none;">
         <div class="center">
       <h1>Post Page</h1>
-      <p>Welcome to the post page.</p>
+      <p>Create a new post for a book </p>
       </div>
         <section>
             <h2>Post Books</h2>
-            <form method = "POST" action='test.html' target="iframeoutput" > 
+            <form method = "GET" action='post.html' target="iframeoutputPost" > 
               <fieldset>
               <legend> Data input: </legend>
                   <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
@@ -105,9 +107,9 @@
                   <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
                   
 
-                  <input  type="submit"  value="fetchGet">
+                  <input  type="submit"  value="fetchPost" >
 
-                  <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
+                  <iframe src="post.html" height="500" width="1400" name="iframeoutputPost"> 
                   </iframe>                    
 
               </fieldset>
@@ -118,40 +120,76 @@
     <div id="patchPage" class="page" style="display: none;">
         <div class="center">
       <h1>Patch Page</h1>
-      <p>Welcome to the patch page.</p>
+      <p>Here you can edit any information about existing books </p>
     </div>
         <section>
-            <h2>Patch Books</h2>
-            <form method = "PATCH" action='test.html' target="iframeoutput" > 
+            <h2>Point to: </h2>
+            <form method = "GET" action='patch.html' target="iframeoutputPatch" > 
               <fieldset>
-              <legend> Data input: </legend>
-                  <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
-                  <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
-                  <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
-                  <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
-                  <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
-                  <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
-                  
+              <legend> Patching data point with ID: </legend>
+                  <label for="pointToID">ID: <input type = "text" id="pointtoID" name="pointToID" autofocus> </label>
 
-                  <input  type="submit"  value="fetchGet">
-
-                  <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
-                  </iframe>                    
-
+                  <fieldset>
+                    <legend> Patching with new data: </legend>
+                        <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
+                        <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
+                        <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
+                        <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
+                        <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
+                        <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
+                        
+      
+                        <input  type="submit"  value="fetchPatch">
+                                          
+                    </fieldset>                    
               </fieldset>
             </form>
         </section>
+    
+        <section>
+          <h2>Find books </h2>
+          <form method = "GET" action='get.html' target="iframeoutputPatch" > 
+            <fieldset>
+            <legend> Data input: </legend>
+                <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
+                <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
+                <label for="author">Author: <input type = "text" id="author" name="author"> </label> 
+                <label for="pages">Pages: <input type = "number" id="pages" name="pages"> </label> 
+                <label for="Genres">Genres: <input type = "checkbox" id="Genres" name="Genres"> </label> 
+                <label for="rating">rating: <input type = "number" id="rating" name="rating"> </label> 
+            
+
+                <input  type="submit"  value="fetchGet">
+
+                <iframe src="get.html" height="500" width="1400" name="iframeoutputPatch"> 
+                </iframe>                    
+
+            </fieldset>
+          </form>
+      </section>
     </div>
 
     <div id="deletePage" class="page" style="display: none;">
         <div class="center">
       <h1>Delete Page</h1>
-      <p>Welcome to the delete page.</p>
+      <p>Here you can delete any book </p>
     </div>
         <section>
-            <h2>Get Books</h2>
-            <form method = "DELETE" action='test.html' target="iframeoutput" > 
+            <h2>Delete Books</h2>
+            <form method = "GET" action='delete.html' target="iframeoutputDelete" > 
               <fieldset>
+              <legend> Delete book with ID: </legend>
+                  <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
+
+                  <input  type="submit"  value="fetchDelete">               
+
+              </fieldset>
+          </form>
+        </section>
+        <section>
+            <h2>Get Books</h2>
+            <form method = "GET" action='get.html' target="iframeoutputDelete" > 
+              <fieldset  >
               <legend> Data input: </legend>
                   <label for="_id">ID: <input type = "text" id="_id" name="_id" autofocus> </label>
                   <label for="title">Title: <input type = "text" id="title" name="title"> </label> 
@@ -163,12 +201,13 @@
 
                   <input  type="submit"  value="fetchGet">
 
-                  <iframe src="test.html" height="500" width="1400" name="iframeoutput"> 
+                  <iframe src="get.html" height="200" width="1400" name="iframeoutputDelete"> 
                   </iframe>                    
 
               </fieldset>
           </form>
         </section>
+
     </div>
 
     <script>
