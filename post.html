@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Results</title>
+    </head>
+    <body src="app.js">
+        <div id="results">
+            <!-- <ul class="nav-items">
+                <li class="nav-link">
+                    <a href="Index.html">Index.html</a>
+                </li>
+            </ul> -->
+
+            <script >
+                //console.log('aoeuaoe')
+                //const fetchGet = require('app.js')
+                //let id = []
+                let i = 0;
+                let totalParams = 6;
+                let searchParameters = {};
+                let splength = 0;
+                const alphabet = ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+                // let search = {};
+                const resultList = document.getElementById('results')
+                new URLSearchParams(window.location.search).forEach((value, name) => {
+                    //console.log("Aeouaoeuaoeuoe");
+                    resultList.append(`${name}: ${value}`)
+                    resultList.append(document.createElement('br')) 
+                    i++;
+                    console.log(name + ": " + value + "\n");
+                    
+                    //console.log(value + "value is not NULL");
+                    searchParameters[name] = value;
+                    splength++;
+                        //console.log(searchParameters.length);
+                    //resultList.append('helloworld')
+                    //alert(title + ' ' + author)
+                    // if(id.length > 0){
+                    //     fetchGet(id[0]) 
+                    // }
+                    
+                
+                    if(i == totalParams - 1){
+                        console.log("Search parameters: " + JSON.stringify(searchParameters) + splength);
+
+                        
+                        if(splength == 0){
+                            console.log("search cannot be set to null");
+                        }
+                        else{
+                            fetchPost(resultList, searchParameters)
+                            console.log('Post was succesful')
+                            splength = 0;
+                        }
+                    }
+                })
+
+                
+                function fetchPost(resultList, postObj){
+                    // fetch("http://localhost:3000/books").then(data => data.json()).then(data => console.log("HELLO", data))
+                    //https://www.youtube.com/watch?v=cuEtnrL9-H0
+                        console.log('Currently in fetchPost')
+
+                        if(searchParameters["_id"] == ""){
+                            let randID = "";
+                            for(let i = 0; i < 24; i++){
+                                randID += alphabet[Math.floor(Math.random() * alphabet.length)]
+                            }
+
+                            searchParameters["_id"] = randID
+                        }
+                        
+                        let uri = 'http:localhost:3000/books'
+                        let newPost = {
+                                '_id': postObj["_id"],
+                                'title': postObj["title"],
+                                'author': postObj["author"],
+                                'pages': postObj["pages"],
+                                'genres': postObj["genres"],
+                                'rating': postObj["rating"],
+                        }
+
+
+                        fetch(uri, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newPost)
+                        
+                        })
+                        .then(res => {
+                            if(res.ok){
+                                console.log('successful response')
+                            }
+                            else{
+                                console.log('response was unsuccessful')
+                            }
+                            return res.json()
+                        })
+                        .then(data => 
+                            {
+                               printInIframe(newPost, resultList)
+                                
+                            })
+                        .catch(err => console.log(`ERROR ${err}`))       
+            
+                }
+
+                function printInIframe(data, resultList){
+                    //resultList.append('hello world up in this bitch fr.')
+                    resultList.append(document.createElement('br'))
+                    //response.status(200).json(data)
+                    // data = JSON.stringify(data, null, 3)
+
+                    for(let dataPoint in data){
+                        // resultList.append('{')
+                        // resultList.append(document.createElement('br'))
+                        // for(let dataCategory in dataPoint){
+                        //     resultList.append(JSON.stringify(dataCategory))
+                        //     resultList.append(document.createElement('br'))
+
+                        // }
+                        resultList.append(JSON.stringify(dataPoint) + ": ")
+                        resultList.append(JSON.stringify(data[dataPoint]))
+                        resultList.append(document.createElement('br'))
+                        resultList.append(document.createElement('br'))
+
+                    }
+
+                    // resultList.append(data)
+                }
+            </script>
+        </div>
+    </body>
+</html>
